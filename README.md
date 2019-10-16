@@ -1,14 +1,14 @@
-# Rcabell Wrfhydro
+# WRF-Hydro Modeling System Homebrew Tap
 
 ## How do I install these formulae?
-`brew install rcabell/wrfhydro/<formula>`
+`brew install rcabell/wrfhydro/wrfhydro`
 
-Or `brew tap rcabell/wrfhydro` and then `brew install <formula>`.
+Or `brew tap rcabell/wrfhydro` and then `brew install wrfhydro`.
 
 Or install via URL (which will not receive updates):
 
 ```
-brew install https://raw.githubusercontent.com/rcabell/homebrew-wrfhydro/master/Formula/<formula>.rb
+brew install https://raw.githubusercontent.com/rcabell/homebrew-wrfhydro/master/Formula/wrfhydro.rb
 ```
 
 ## Documentation
