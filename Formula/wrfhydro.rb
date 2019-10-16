@@ -2,22 +2,34 @@
 #                https://rubydoc.brew.sh/Formula
 # PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class Wrfhydro < Formula
-  desc ""
-  homepage ""
-  url "wrfhydro"
-  version ""
-  sha256 ""
+  desc "WRF-Hydro model code"
+  homepage "https://ral.ucar.edu/projects/wrf_hydro"
+  #url "https://github.com/NCAR/wrf_hydro_nwm_public/archive/v5.1.1-beta.tar.gz"
+  url "https://github.com/NCAR/wrf_hydro_nwm_public.git"
+  sha256 "07e327e04c545a4ddd227fe9f4c89efe9f04a0b13217c158beeb5e5fe18dfbb6"
+  #head "https://github.com/NCAR/wrf_hydro_nwm_public.git"
 
-  # depends_on "cmake" => :build
+  depends_on "gcc"
+  depends_on "netcdf"
+  depends_on "open-mpi"
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
-    # Remove unrecognized options if warned by configure
-    system "./configure", "--disable-debug",
-                          "--disable-dependency-tracking",
-                          "--disable-silent-rules",
-                          "--prefix=#{prefix}"
-    # system "cmake", ".", *std_cmake_args
+    ENV.deparallelize
+
+    ENV.append "WRF_HYDRO", "1"
+    ENV.append "HYDRO_D", "0"
+    ENV.append "RESERVOIR_D", "0"
+    ENV.append "SPATIAL_SOIL", "1"
+    ENV.append "WRF_HYDRO_RAPID", "0"
+    ENV.append "WRFIO_NCD_LARGE_FILE_SUPPORT", "1"
+    ENV.append "NCEP_WCOSS", "0"
+    ENV.append "WRF_HYDRO_NUDGING", "0"
+
+    Dir.chdir('trunk/NDHMS')
+    system "./configure", "2"
+    system "./compile_offline_NoahMP.sh"
+    cp "Run/wrf_hydro_NoahMP.exe", "wrf_hydro.exe"
+    bin.install "wrf_hydro.exe"
   end
 
   test do
