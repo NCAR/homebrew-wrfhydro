@@ -5,7 +5,7 @@ class Wrfhydro < Formula
   sha256 "203043916c94c597dd4204033715d0b2dc7907e2168cbe3dfef3cd9eef950eb7"
   head "https://github.com/NCAR/wrf_hydro_nwm_public.git"
   version "v5.1.2"
-  revision 1
+  revision 2
 
   depends_on "gcc"
   depends_on "netcdf"
@@ -16,7 +16,6 @@ class Wrfhydro < Formula
   option "with-debug", "Build with HYDRO_D debugging statements"
   option "with-nudging", "Build with streamflow nudging support"
   option "without-spatial-soil", "Build without spatial soil support"
-  option "without-large-file-support", "Build without support for large (>2GB) netCDF files"  
   
   def install
     ENV.deparallelize
