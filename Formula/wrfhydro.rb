@@ -1,13 +1,10 @@
-# Documentation: https://docs.brew.sh/Formula-Cookbook
-#                https://rubydoc.brew.sh/Formula
 class Wrfhydro < Formula
   desc "WRF-Hydro model code"
   homepage "https://ral.ucar.edu/projects/wrf_hydro"
-  #url "https://github.com/NCAR/wrf_hydro_nwm_public/archive/v5.1.1-beta.tar.gz"
-  url "https://github.com/NCAR/wrf_hydro_nwm_public.git"
-  #sha256 "07e327e04c545a4ddd227fe9f4c89efe9f04a0b13217c158beeb5e5fe18dfbb6"
-  #head "https://github.com/NCAR/wrf_hydro_nwm_public.git"
-  version "v5.2.0-pre"
+  url "https://github.com/NCAR/wrf_hydro_nwm_public/archive/v5.1.2.tar.gz"
+  sha256 "203043916c94c597dd4204033715d0b2dc7907e2168cbe3dfef3cd9eef950eb7"
+  head "https://github.com/NCAR/wrf_hydro_nwm_public.git"
+  version "v5.1.2"
   revision 1
 
   depends_on "gcc"
@@ -37,9 +34,6 @@ class Wrfhydro < Formula
 
     ENV.append "SPATIAL_SOIL", (build.with? "spatial-soil") ? "1" : "0"
     ohai "  SPATIAL_SOIL = #{ENV['SPATIAL_SOIL']}"
-
-    ENV.append "WRFIO_NCD_LARGE_FILE_SUPPORT", (build.with? "large-file-support") ? "1" : "0"
-    ohai "  WRFIO_NCD_LARGE_FILE_SUPPORT = #{ENV['WRFIO_NCD_LARGE_FILE_SUPPORT']}"
 
     ENV.append "WRF_HYDRO_NUDGING", (build.with? "nudging") ? "1" : "0"
     ohai "  WRF_HYDRO_NUDGING = #{ENV['WRF_HYDRO_NUDGING']}"
